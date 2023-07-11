@@ -1,23 +1,16 @@
-import { useState } from 'react'
 import styles from './page.module.css'
 import axios from 'axios'
+import Client from '@/components/Client/Client'
+import { useEffect } from 'react'
 
 export default function Home() {
-  const apiTest = async () => {
-    const response = await axios({
-      method: 'POST',
-      url: '/api/test',
-
-      data: '123',
-    })
-    console.log('들어옴', response.data)
-  }
   return (
     <main className={styles.main}>
-      <div>
-        <div>server test</div>
+      <div className={styles.container}>
+        main
+        <div className={styles.server}>server test</div>
         <br />
-        <button onClick={apiTest}>click!</button>
+        <Client />
       </div>
     </main>
   )
