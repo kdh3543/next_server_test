@@ -1,29 +1,33 @@
 'use client'
 
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-function Client({ props }: any) {
-  async function getData() {
-    const res = await axios({
+function Client() {
+  const [text, setText] = useState('')
+  function postData(value: any) {
+    const res = axios({
       method: 'POST',
       url: '/api/test',
       data: {
-        data: 123,
+        data: value,
       },
     })
     return res
   }
-  useEffect(() => {
-    getData().then((res) => {
-      console.log(res)
-    })
-  }, [])
+
+  const changeData = (e: any) => {
+    setText(e.target.value)
+  }
+  const apiTest = async () => {
+    const res = await postData(text)
+    console.log(res.data)
+  }
   return (
     <>
       <div>client</div>
-
-      <button onClick={() => props.apiTest}>click!</button>
+      <input type="text" onChange={(e) => changeData(e)} />
+      <button onClick={apiTest}>click!</button>
     </>
   )
 }
