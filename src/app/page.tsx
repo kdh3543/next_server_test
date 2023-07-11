@@ -1,7 +1,7 @@
 import styles from './page.module.css'
 import axios from 'axios'
 import Client from '@/components/Client/Client'
-import { useEffect } from 'react'
+import { use, useEffect } from 'react'
 
 export default function Home() {
   return (

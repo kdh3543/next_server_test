@@ -4,24 +4,21 @@ import axios from 'axios'
 import { useEffect } from 'react'
 
 function Client({ props }: any) {
-  useEffect(() => {
-    apiTest()
-  }, [])
-  const apiTest = async () => {
-    let response: any = null
-    console.log('....')
-    try {
-      response = await axios({
-        method: 'POST',
-        url: '/api/test',
-        data: '123',
-      })
-    } catch (err) {
-      console.log('err', err)
-    }
-
-    console.log('들어옴', response.data)
+  async function getData() {
+    const res = await axios({
+      method: 'POST',
+      url: '/api/test',
+      data: {
+        data: 123,
+      },
+    })
+    return res
   }
+  useEffect(() => {
+    getData().then((res) => {
+      console.log(res)
+    })
+  }, [])
   return (
     <>
       <div>client</div>
