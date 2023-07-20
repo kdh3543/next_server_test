@@ -1,7 +1,9 @@
 'use client'
 import { useState } from 'react'
 import styles from '@/app/page.module.css'
-import Client from '@/components/Client/Client'
+import Client from '@/app/client'
+import Signup from '@/app/signup'
+import { HOME_CATEGORY } from './home.data'
 
 export default function Home() {
   const [category, setCategory] = useState('')
@@ -10,14 +12,15 @@ export default function Home() {
       <div className={styles.container}>
         <div>category</div>
         <div className={styles.category}>
-          <button onClick={() => setCategory('Client')}>Client</button>
-          <button onClick={() => setCategory('login')}>login</button>
-          {/* <div>
-            <Client />
-          </div> */}
-          {/* <div>login</div> */}
+          {HOME_CATEGORY.map((list) => (
+            <button key={list.id} onClick={() => setCategory(list.title)}>
+              {list.title}
+            </button>
+          ))}
         </div>
-        {category === 'Client' && <Client />}
+        <br />
+        {category === 'client' && <Client />}
+        {category === 'signup' && <Signup />}
       </div>
     </main>
   )
